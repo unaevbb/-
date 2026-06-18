@@ -6,8 +6,8 @@ import ru.bulgakov.qa.PAGES.Aeroflot.AeroWelcomePage;
 import ru.bulgakov.qa.PAGES.Aeroflot.CalculatingPoints;
 import ru.bulgakov.qa.PAGES.YandexSearchPage;
 
-import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Qatest {
 //    @Test
@@ -48,7 +48,7 @@ public class Qatest {
 
     YandexSearchPage yaSearch = new YandexSearchPage();
     AeroWelcomePage aeroMain = new AeroWelcomePage();
-    CalculatingPoints choosingCities = new CalculatingPoints();
+    CalculatingPoints page = new CalculatingPoints();
 
     open("https://ya.ru/");
     yaSearch
@@ -58,16 +58,16 @@ public class Qatest {
             .openLink("aeroflot.ru");
     aeroMain
             .mainMenu()
-            .calculatorTab();
-    choosingCities
+            .calculatorTab()
             .cityDeparture()
             .clearCityDeparture()
-            .entryDepartureCity()
-            .choiseCityDepartureCode()
+            .enterDepartureCity("Оренбург")
+            .chooseCityDepartureCode("REN")
             .cityArrival()
             .clearCityArrival()
-            .entryCityArrival()
-            .choiseCityArrivalCode()
-            .verifyMiles("3 864¥");
+            .enterCityArrival("санкт")
+            .chooseCityArrivalCode("LED");
+
+    assertEquals("3 864¥", page.getMilesResult());
     }
 }
