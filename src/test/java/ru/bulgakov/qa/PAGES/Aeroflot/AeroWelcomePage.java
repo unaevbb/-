@@ -1,7 +1,6 @@
 package ru.bulgakov.qa.PAGES.Aeroflot;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.bulgakov.qa.PAGES.WelcomePage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -16,10 +15,10 @@ public class AeroWelcomePage {
 
         return this;
     }
-    public CalculatingPoints calculatorTab () {
+    public MilesCalculatorPage calculatorTab () {
         calculator.click();
 
-        return new CalculatingPoints();
+        return new MilesCalculatorPage();
     }
 }
 
